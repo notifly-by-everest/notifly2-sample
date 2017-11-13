@@ -32,10 +32,10 @@ if(false) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
-exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
+
 
 // module
-exports.push([module.i, ".loading {\n  opacity: 0;\n  position: fixed;\n  height: 100%;\n  width: 100%;\n  background: #272c33;\n  padding-top: 25vh;\n  text-align: center;\n  z-index: -1;\n  transition: opacity .8s ease-out; }\n\napp-root:empty + .loading {\n  opacity: 1;\n  z-index: 100; }\n  app-root:empty + .loading h1 {\n    font-family: \"courier\", monospace;\n    color: #EEE;\n    margin-bottom: 50px; }\n\nbody {\n  font-family: 'Roboto', sans-serif; }\n\n.footer {\n  border-top: 1px solid #eee;\n  min-height: 100px;\n  text-align: center; }\n\n.text-truncate {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis; }\n\n.box {\n  border-radius: 0px;\n  margin-top: 5px; }\n\n.input {\n  margin-bottom: 5px; }\n\n.btn-social {\n  color: #fff; }\n  .btn-social:hover {\n    color: #fff;\n    box-shadow: 0 14px 26px -12px rgba(0, 0, 0, 0.2), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.1); }\n  .btn-social .btn-block {\n    margin-bottom: 10px; }\n\n.btn-twitter {\n  background-color: #55ACEE; }\n\n.btn-facebook {\n  background-color: #3B5998; }\n\n.btn-github {\n  background-color: #333333; }\n\n.btn-google {\n  background-color: #DD4B39; }\n\n.btn-social.button[disabled] {\n  color: #333333;\n  background-color: #fff;\n  border-color: #dbdbdb;\n  box-shadow: none;\n  opacity: .6; }\n", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n", ""]);
 
 // exports
 
