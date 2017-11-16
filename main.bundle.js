@@ -291,7 +291,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".form {\n  margin-top: 4em; }\n  .form label {\n    display: block;\n    font-weight: 400; }\n  .form input {\n    width: 100%; }\n\n.schedule_btn {\n  border-radius: 30px;\n  font-size: 21px;\n  font-weight: 300;\n  margin: auto;\n  display: block;\n  margin-top: 1.67em;\n  padding: 7px 25px; }\n\n.preloader .preload {\n  position: absolute;\n  left: 50%;\n  width: 30px;\n  height: 30px;\n  margin: -42px 0 0 -12px;\n  margin-top: 1em;\n  background: #b7adad;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  -webkit-animation: spin 1s infinite linear;\n          animation: spin 1s infinite linear; }\n@-webkit-keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg); } }\n@keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg); } }\n@media (max-width: 500px) {\n  .form-group input {\n    border: none;\n    border-bottom: #797979 solid 0.5px; } }\n", ""]);
+exports.push([module.i, ".form {\n  margin-top: 4em; }\n  .form label {\n    display: block;\n    font-weight: 400; }\n  .form input {\n    width: 100%; }\n\n.schedule_btn {\n  border-radius: 30px;\n  font-size: 21px;\n  font-weight: 300;\n  margin: auto;\n  display: block;\n  margin-top: 1.67em;\n  padding: 7px 25px;\n  background-color: #e0e0e0;\n  transition: background-color 0.5s ease; }\n\n.schedule_btn:hover {\n  background-color: #bbbbbb; }\n\n.preloader .preload {\n  position: absolute;\n  left: 50%;\n  width: 30px;\n  height: 30px;\n  margin: -42px 0 0 -12px;\n  margin-top: 1em;\n  background: #b7adad;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  -webkit-animation: spin 1s infinite linear;\n          animation: spin 1s infinite linear; }\n@-webkit-keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg); } }\n@keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg); } }\n@media (max-width: 500px) {\n  .form-group input {\n    border: none;\n    border-bottom: #797979 solid 0.5px; } }\n", ""]);
 
 // exports
 
@@ -304,7 +304,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/routeComponents/input-details/input-details.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-sm-10 col-sm-offset-1 \">\n    <div class=\"text-center\">\n      <h3>Input Details</h3>\n      \n      <h5>{{selected_month}} {{selected_date}}, {{selected_year}} || {{selected_time_slot_human_time}}</h5>\n\n    </div>\n    <div class=\"row\"></div>\n    <div class=\"form col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1\">\n      <div class=\"form-group\">\n        <label for=\"\">First Name</label>\n        <input type=\"text\" [(ngModel)]=\"userFname\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"\">Last Name</label>\n        <input type=\"text\" [(ngModel)]=\"userLname\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"\">Email</label>\n        <input type=\"text\" [(ngModel)]=\"userEmail\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"\">Phone</label>\n        <input type=\"text\" [(ngModel)]=\"userPhone\">\n      </div>\n\n      <div class=\"preloaderConditional\">\n        <div class=\"preloader\" *ngIf=\"showPreloader\">\n          <div class=\"preload\"></div>\n        </div>\n\n        <button *ngIf=\"!showPreloader\" (click)=\"submitAppointment()\" class=\"text-center btn schedule_btn\">Schedule Appointment</button>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col-sm-10 col-sm-offset-1 \">\n    <div class=\"text-center\">\n      <h3>Input Details</h3>\n      \n      <h5>{{selected_month}} {{selected_date}}, {{selected_year}} || {{selected_time_slot_human_time}}</h5>\n\n    </div>\n    <div class=\"row\"></div>\n    <div class=\"form col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1\">\n      <div class=\"form-group\">\n        <label for=\"\">First Name</label>\n        <input type=\"text\" [(ngModel)]=\"userFname\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"\">Last Name</label>\n        <input type=\"text\" [(ngModel)]=\"userLname\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"\">Email</label>\n        <input type=\"text\" [(ngModel)]=\"userEmail\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"\">Phone</label>\n        <input type=\"text\" [(ngModel)]=\"userPhone\">\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"\">Appointment Duration</label>\n         <select [(ngModel)]=\"userAptDuration\" >\n          <option \n            *ngFor=\"let slot of slots\" \n            [ngValue]=\"slot.slot_duration\"\n            selected=\"slot.slot_selected\"\n          >{{slot.slot_duration_text}}</option>\n        </select>\n      </div>\n\n      <div class=\"preloaderConditional\">\n        <div class=\"preloader\" *ngIf=\"showPreloader\">\n          <div class=\"preload\"></div>\n        </div>\n\n        <button *ngIf=\"!showPreloader\" (click)=\"submitAppointment()\" class=\"text-center btn schedule_btn\">Schedule Appointment</button>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -341,10 +341,13 @@ var InputDetailsComponent = (function () {
         this.selected_time_slot_human_time = '';
         this.selected_trainer_key = '';
         this.selected_trainer_name = '';
+        this.num_of_slots = null;
+        this.slots = [];
         this.userFname = '';
         this.userLname = '';
         this.userEmail = '';
         this.userPhone = '';
+        this.userAptDuration = null;
     }
     InputDetailsComponent.prototype.ngOnInit = function () {
         if (this._webSrv.selected_slot == null) {
@@ -358,22 +361,28 @@ var InputDetailsComponent = (function () {
             this.selected_year = this._webSrv.selected_year;
             this.selected_time_slot = this._webSrv.selected_slot;
             this.selected_time_slot_human_time = this._webSrv.selected_slot['startTimeHuman'];
+            this.num_of_slots = this._webSrv.selected_slot['30_min_intervals'];
+            this.setupAptDurationSelector();
             console.log(this.selected_time_slot);
         }
     };
     InputDetailsComponent.prototype.submitAppointment = function () {
         var _this = this;
+        console.log(this.userAptDuration);
+        console.log(this.slots);
         this.showPreloader = true;
+        var end_time_addon = this.userAptDuration * 60;
         var appointmentObj = {
             startTime: parseInt(this.selected_time_slot['startTimeMs']),
             start: parseInt(this.selected_time_slot['startTimeMs']),
-            endTime: parseInt(this.selected_time_slot['startTimeMs']) + 3600,
-            end: parseInt(this.selected_time_slot['startTimeMs']) + 3600,
+            endTime: parseInt(this.selected_time_slot['startTimeMs']) + end_time_addon,
+            end: parseInt(this.selected_time_slot['startTimeMs']) + end_time_addon,
             date: this._webSrv.selected_date,
             month: this._webSrv.selected_month,
             month_index: this._webSrv.selected_month_index + 1,
             year: this._webSrv.selected_year,
             humanTime: this.selected_time_slot['startTimeHuman'],
+            humanTimeEnd: this.getHumanTime(this.selected_time_slot['startTimeMs'] + end_time_addon),
             userPhone: this.userPhone,
             userEmail: this.userEmail,
             userName: this.userFname + ' ' + this.userLname,
@@ -394,6 +403,47 @@ var InputDetailsComponent = (function () {
         this.userLname = '';
         this.userEmail = '';
         this.userPhone = '';
+    };
+    InputDetailsComponent.prototype.setupAptDurationSelector = function () {
+        console.log(this.num_of_slots);
+        if (this.num_of_slots > 4) {
+            this.num_of_slots = 4;
+        }
+        console.log(this.num_of_slots);
+        for (var i = 1; i <= this.num_of_slots; i++) {
+            var slot_obj = {
+                slot_duration_text: ((30 * i) + ' min'),
+                slot_duration: (i * 30),
+                slot_selected: false
+            };
+            if (i == 1 && this.num_of_slots == 1) {
+                slot_obj.slot_selected = true;
+                this.userAptDuration = 30;
+            }
+            else if (i == 2) {
+                slot_obj.slot_selected = true;
+                this.userAptDuration = 60;
+            }
+            this.slots.push(slot_obj);
+        }
+    };
+    InputDetailsComponent.prototype.getHumanTime = function (time) {
+        var hours, min, period;
+        hours = Math.floor(parseInt(time) / 3600);
+        if (parseInt(time) / 3600 > hours) {
+            min = ':30 ';
+        }
+        else {
+            min = ':00 ';
+        }
+        if (hours > 12) {
+            hours = hours - 12;
+            period = 'pm';
+        }
+        else {
+            period = 'am';
+        }
+        return (hours + min + period);
     };
     return InputDetailsComponent;
 }());
@@ -710,7 +760,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".available_times {\n  width: 50%;\n  margin-left: 25%; }\n  .available_times .slot {\n    padding-top: 20px;\n    font-size: 17px;\n    cursor: pointer; }\n    .available_times .slot span {\n      color: #2c81a9;\n      background: #ececec;\n      padding: 5px 10px;\n      border-radius: 5px; }\n\n@media (max-width: 500px) {\n  .available_times {\n    width: 80%;\n    margin-left: 10%; } }\n", ""]);
+exports.push([module.i, ".available_times {\n  width: 50%;\n  margin-left: 25%; }\n  .available_times .slot {\n    padding-top: 20px;\n    font-size: 17px;\n    cursor: pointer; }\n    .available_times .slot span {\n      color: #2c81a9;\n      background-color: #ececec;\n      transition: background-color 0.5s ease;\n      padding: 5px 10px;\n      border-radius: 5px; }\n    .available_times .slot span:hover {\n      background-color: #bbb; }\n\n@media (max-width: 500px) {\n  .available_times {\n    width: 80%;\n    margin-left: 10%; } }\n", ""]);
 
 // exports
 
@@ -828,6 +878,16 @@ var SelectTimeComponent = (function () {
         }
     };
     SelectTimeComponent.prototype.selectTimeSlot = function (slot) {
+        // Find out how many 30 min slots after the selected one
+        console.log(this.trainer_availability_arr);
+        // var timeslots_arr = Object.keys(this.trainer_availability_arr)
+        for (var i = 0; i < this.trainer_availability_arr.length; i++) {
+            if (this.trainer_availability_arr[i] == slot['startTimeMs']) {
+                console.log("How many slots including this one: ");
+                console.log(this.trainer_availability_arr.length - (i));
+                slot['30_min_intervals'] = (this.trainer_availability_arr.length - (i));
+            }
+        }
         console.log(slot);
         this._webSrv.selected_slot = slot;
         this._router.navigate(['input-details']);
@@ -875,7 +935,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".img {\n    max-width: 240px;\n}\n\nh3 {\n    margin-top: 1em;\n}\n\n.trainer {\n    margin-left: 10px;\n    margin-right: 10px;\n}\n\n.logo {\n    width: 150px;\n}", ""]);
+exports.push([module.i, ".img {\n    max-width: 240px;\n}\n\nh3 {\n    margin-top: 1em;\n}\n\n.trainer {\n    margin-left: 10px;\n    margin-right: 10px;\n    background-color: #e0e0e0;\n    transition: background-color 0.5s ease;\n}\n.trainer:hover {\n    background-color: #bbbbbb;\n}\n\n.logo {\n    width: 150px;\n}", ""]);
 
 // exports
 
