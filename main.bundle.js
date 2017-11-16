@@ -382,7 +382,7 @@ var InputDetailsComponent = (function () {
             month_index: this._webSrv.selected_month_index + 1,
             year: this._webSrv.selected_year,
             humanTime: this.selected_time_slot['startTimeHuman'],
-            humanTimeEnd: this.getHumanTime(this.selected_time_slot['startTimeMs'] + end_time_addon),
+            humanTimeEnd: this.getHumanTime(parseInt(this.selected_time_slot['startTimeMs']) + end_time_addon),
             userPhone: this.userPhone,
             userEmail: this.userEmail,
             userName: this.userFname + ' ' + this.userLname,
