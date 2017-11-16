@@ -304,7 +304,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/routeComponents/input-details/input-details.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-sm-10 col-sm-offset-1 \">\n    <div class=\"text-center\">\n      <h3>Input Details</h3>\n      \n      <h5>{{selected_month}} {{selected_date}}, {{selected_year}} || {{selected_time_slot_human_time}}</h5>\n\n    </div>\n    <div class=\"row\"></div>\n    <div class=\"form col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1\">\n      <div class=\"form-group\">\n        <label for=\"\">First Name</label>\n        <input type=\"text\" [(ngModel)]=\"userFname\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"\">Last Name</label>\n        <input type=\"text\" [(ngModel)]=\"userLname\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"\">Email</label>\n        <input type=\"text\" [(ngModel)]=\"userEmail\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"\">Phone</label>\n        <input type=\"text\" [(ngModel)]=\"userPhone\">\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"\">Appointment Duration</label>\n         <select [(ngModel)]=\"userAptDuration\" >\n          <option \n            *ngFor=\"let slot of slots\" \n            [ngValue]=\"slot.slot_duration\"\n            selected=\"slot.slot_selected\"\n          >{{slot.slot_duration_text}}</option>\n        </select>\n      </div>\n\n      <div class=\"preloaderConditional\">\n        <div class=\"preloader\" *ngIf=\"showPreloader\">\n          <div class=\"preload\"></div>\n        </div>\n\n        <button *ngIf=\"!showPreloader\" (click)=\"submitAppointment()\" class=\"text-center btn schedule_btn\">Schedule Appointment</button>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col-sm-10 col-sm-offset-1 \">\n    <div class=\"text-center\">\n      <h3>Input Details</h3>\n      \n      <h5>{{selected_month}} {{selected_date}}, {{selected_year}} || {{selected_time_slot_human_time}}</h5>\n\n    </div>\n    <div class=\"row\"></div>\n    <div class=\"form col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1\">\n      <div class=\"form-group\">\n        <label for=\"\">First Name</label>\n        <input type=\"text\" [(ngModel)]=\"userFname\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"\">Last Name</label>\n        <input type=\"text\" [(ngModel)]=\"userLname\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"\">Email</label>\n        <input type=\"text\" [(ngModel)]=\"userEmail\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"\">Phone</label>\n        <input type=\"text\" [(ngModel)]=\"userPhone\">\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"\">Appointment Type</label>\n         <select [(ngModel)]=\"userAptType\" >\n          <option value=\"in_person_training\">In-Person Training</option>\n          <option value=\"phone_call\">Phone Call</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"\">Appointment Duration</label>\n         <select [(ngModel)]=\"userAptDuration\" >\n          <option \n            *ngFor=\"let slot of slots\" \n            [ngValue]=\"slot.slot_duration\"\n            selected=\"slot.slot_selected\"\n          >{{slot.slot_duration_text}}</option>\n        </select>\n      </div>\n\n      <div class=\"preloaderConditional\">\n        <div class=\"preloader\" *ngIf=\"showPreloader\">\n          <div class=\"preload\"></div>\n        </div>\n\n        <button *ngIf=\"!showPreloader\" (click)=\"submitAppointment()\" class=\"text-center btn schedule_btn\">Schedule Appointment</button>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -347,6 +347,7 @@ var InputDetailsComponent = (function () {
         this.userLname = '';
         this.userEmail = '';
         this.userPhone = '';
+        this.userAptType = 'in_person_training';
         this.userAptDuration = null;
     }
     InputDetailsComponent.prototype.ngOnInit = function () {
@@ -367,6 +368,14 @@ var InputDetailsComponent = (function () {
         }
     };
     InputDetailsComponent.prototype.submitAppointment = function () {
+        if (this.userEmail == '' || this.userFname == '' || this.userLname == '' || this.userPhone == '') {
+            alert("Please complete the form.");
+        }
+        else {
+            this.submitAppointmentHelper();
+        }
+    };
+    InputDetailsComponent.prototype.submitAppointmentHelper = function () {
         var _this = this;
         console.log(this.userAptDuration);
         console.log(this.slots);
@@ -388,7 +397,8 @@ var InputDetailsComponent = (function () {
             userName: this.userFname + ' ' + this.userLname,
             trainerKey: this.selected_trainer_key,
             trainerName: this._webSrv.selected_trainer_name,
-            organization: this._webSrv.environment_object['org_name']
+            organization: this._webSrv.environment_object['org_name'],
+            aptType: this.userAptType
         };
         console.log(appointmentObj);
         this._webSrv.submitAnAppointment(appointmentObj).subscribe(function (res) {
